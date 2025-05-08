@@ -1,0 +1,22 @@
+<body>
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>나이</td>
+        </tr>
+        <!-- for each 랑 비슷해보인다. -->
+         <!-- for (User user : list) -->
+          <!-- for(const user of list) -->
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.userAge}"></td>
+        </tr>
+    </table>
+    <hr>
+    <th:block th:each="pageNumber : ${#numbers.sequence(1, 10)}">
+        <span th:text="${pageNumber}"></span>
+        <span>[[${pageNumber}]]</span>
+    </th:block>
+</body>

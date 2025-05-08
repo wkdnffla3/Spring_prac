@@ -1,0 +1,3 @@
+<th:block th:each="pageNumber : ${#numbers.sequence(1, 10)}">
+<a th:href="@{/linkUrl(page=${pageNumber})}" th:text="${pageNumber}"></a>
+</th:block>

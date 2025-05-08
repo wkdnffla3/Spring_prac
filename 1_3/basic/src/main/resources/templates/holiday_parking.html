@@ -1,0 +1,48 @@
+<table>
+    <tr>
+        <td>아이디</td>
+        <td>시도</td>
+        <td>구군</td>
+        <td>기관명</td>
+        <td>담당자</td>
+        <td>연락처</td>
+    </tr>
+
+    <tr th:each="h : ${hp}">
+        <td>[[${h.id}]]</td>
+        <td>[[${h.sido}]]</td>
+        <td>[[${h.gu}]]</td>
+        <td>[[${h.institution}]]</td>
+        <td>[[${h.manager}]]</td>
+        <td>[[${h.tel}]]</td>
+
+    </tr>
+</table>
+<th:block th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
+
+    <!-- 
+    <a     
+    th:text="${pageNumber}" 
+    th:if="${page} == ${pageNumber}"
+        style="font-weight:bold">
+    </a> 
+    -->
+    <!-- 
+    <a 
+    th:if="${page}!=${pageNumber}"
+    th:href="@{/holiday_parking(page=${pageNumber})}" 
+    th:text="${pageNumber}">
+    </a> -->
+    <span 
+    th:href="@{|/holiday_parking?page=${pageNumber}|}" 
+    th:if="${page}==${pageNumber}" 
+    th:text="${pageNumber}" 
+    style="font-weight:bold">
+        
+    </span>
+    <a th:href="@{/holiday_parking(page=${pageNumber})}"
+    th:unless="${page}==${pageNumber}"
+    th:text="${pageNumber}"
+    ></a>
+</th:block>
+<!-- <a href="@{/holiday_parking(page=${(page -1) / 10 * 10 +11})}">다음</a> -->

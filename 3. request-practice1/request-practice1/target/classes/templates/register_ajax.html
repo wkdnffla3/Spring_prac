@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <script>
+    async function submitForm() {
+      const url = "http://localhost:8080/register-ajax2";
+      
+      //  ? 는 get 방식이다.
+      const formData = new FormData();
+      formData.append("name", "xx");
+      formData.append("age" , "30");
+      formData.append("email","tt");
+
+      const name = document.querySelector("#name");
+      const age = document.querySelector("#age");
+      const email = document.querySelector("#email");
+      const obj = {
+        "name" : name.value,
+        "age" : age.value,
+        "email" :email.value
+      };
+
+      const res = await fetch(url,{
+        method : 'post',
+        headers:{
+          "content-Type" : 'application/json'
+        },
+        // body : formData
+        body : JSON.stringify(obj)
+      });
+      const data = await res.text(); // json() text()
+      console.log(data);
+      // 이름, 나이, 이메일을 JSON으로 묶어 
+      // '/register-ajax'로 POST 요청을 보내고
+      // 결과를 받아 출력
+    }
+  </script>
+</head>
+
+<body>
+  <h2>회원가입 (AJAX)</h2>
+  이름: <input type="text" id="name"><br>
+  나이: <input type="number" id = "age"><br>
+  이메일: <input type="text" id = "email"><br>
+  <button onclick="submitForm()">제출</button>
+  <p id="result"></p>
+</body>
+
+</html>
