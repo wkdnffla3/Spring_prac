@@ -1,0 +1,11 @@
+<body>
+<button onclick="send()">요청</button>
+<script>
+ const send = () => {
+ fetch("http://localhost:8080/api/message")
+//  api의 메시지에 요청을 보내서 then 에서 처리한다.
+ .then(res => res.text())
+ .then(data => console.log(data));
+ }
+</script>
+</body>
